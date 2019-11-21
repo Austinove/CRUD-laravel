@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 @section('content')
     <div class="alert alert-danger text-center" role="alert">
         <span>Do You Want To Delete <strong>{{$user->name}}</strong> Data</span>

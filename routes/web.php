@@ -17,3 +17,11 @@
 Route::get('/', "usersController@index");
 Route::get('/deleteUser/{id}', "usersController@deleteUser");
 Route::resource('user', 'usersController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');

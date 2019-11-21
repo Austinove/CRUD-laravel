@@ -5,10 +5,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 
 class usersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -63,7 +68,7 @@ class usersController extends Controller
         $user->email = $request->input('email');
         $user->department = $request->input('department');
         $user->role = $request->input('role');
-        $user->password='password';
+        $user->password= Hash::make('password');
         $user->userImage= $fileNameToStore;
         $user->save();
         return redirect('/user')->with('success', 'User Created');
@@ -125,7 +130,7 @@ class usersController extends Controller
             $user->email = $request->input('email');
             $user->department = $request->input('department');
             $user->role = $request->input('role');
-            $user->password='password';
+            $user->password= Hash::make('password');
             $user->userImage= $fileNameToStore;
             $user->save();
             return redirect('/user')->with('success', 'User Updated');
@@ -145,7 +150,7 @@ class usersController extends Controller
             $user->email = $request->input('email');
             $user->department = $request->input('department');
             $user->role = $request->input('role');
-            $user->password='password';
+            $user->password=Hash::make('password');
             $user->save();
             return redirect('/user')->with('success', 'User Updated');
         }

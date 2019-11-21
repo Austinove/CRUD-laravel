@@ -1,8 +1,13 @@
-@extends('layout.app')
+@extends('layouts.app')
 @section('content')
 <div class="container">
     <br/>
-    <a class="btn btn-success btn-md" href="/user/create" role="button">Add User Info</a>
+    @if (Auth::user()->role === 'Admin')
+        <a class="btn btn-success btn-md" href="/user/create" role="button">Add User Info</a>
+    @else
+    
+    @endif
+
     <hr class="my-2">
     <table class="table table-striped table-inverse table-responsive">
         <thead class="thead-inverse">
@@ -28,8 +33,13 @@
                             <td>{{$user->role}}</td>
                             <td>{{$user->department}}</td>
                             <td class="datatable-ct actions">
-                                <i class="fa fa-edit edit"><a href='/user/{{$user->id}}/edit' class="btn btn-primary">Edit</a></i>
-                                <i class="fa fa-trash trash"><a href='/deleteUser/{{$user->id}}' class="btn btn-danger">Delete</a></i>
+                                @if ( Auth::user()->role === 'Admin')
+                                    <i class="fa fa-edit edit"><a href='/user/{{$user->id}}/edit' class="btn btn-primary">Edit</a></i>
+                                    <i class="fa fa-trash trash"><a href='/deleteUser/{{$user->id}}' class="btn btn-danger">Delete</a></i>
+                                @else
+                                    Not Actions
+                                @endif
+                                
                             </td>
                         </tr>
 
